@@ -1,13 +1,20 @@
 import cors from "cors";
 import express from "express";
-import helmet from "helmet";
 import { siteContent } from "./siteContent.js";
 
 export const app = express();
 
 const clientOrigin = process.env.CLIENT_ORIGIN;
 
-app.use(helmet());
+app.use((_request, response, next) => {
+  response.set({
+    "Content-Security-Policy": "default-src 'none'",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+  });
+  next();
+});
 app.use(cors({ origin: clientOrigin ? [clientOrigin] : false }));
 app.use(express.json({ limit: "16kb" }));
 
