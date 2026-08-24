@@ -85,7 +85,7 @@ function CompactGallery() {
     <section className="collapsing-gallery-section collapsing-gallery-section-compact" aria-label="Our memories">
       <div className="collapsing-gallery-mobile-grid">
         {imageData.map((image, index) => (
-          <figure className="collapsing-gallery-tile" key={image.src}>
+          <figure className="collapsing-gallery-tile collapsing-gallery-mobile-tile" key={image.src} style={{ animationDelay: `${index * 45}ms` }}>
             <img src={image.src} alt={image.alt} loading={index < 4 ? "eager" : "lazy"} decoding="async" />
           </figure>
         ))}
