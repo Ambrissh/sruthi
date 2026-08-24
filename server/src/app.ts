@@ -30,3 +30,5 @@ app.get("/api/site-content", (_request, response) => {
 app.use((_request, response) => {
   response.status(404).json({ error: "Not found" });
 });
+
+export default app;
