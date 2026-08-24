@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
-import { featuredEvent } from "./featuredEvent";
+import { useEffect, useState } from "react";
+import { getSiteContent, type FeaturedEvent } from "./siteContent";
 
 export function EventsSection() {
+  const [featuredEvent, setFeaturedEvent] = useState<FeaturedEvent>();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    getSiteContent(controller.signal).then((content) => setFeaturedEvent(content.featuredEvent));
+    return () => controller.abort();
+  }, []);
+
+  if (!featuredEvent) return null;
+
   return (
     <section id="events" className="events-section">
       <div className="events-inner">
@@ -27,7 +38,7 @@ export function EventsSection() {
           </div>
           <dl className="event-details">
             <div><dt>Date</dt><dd>{featuredEvent.date}</dd></div>
-            <div><dt>Venue</dt><dd>{featuredEvent.venue.split("\n").map((line, index) => <span key={line}>{line}{index < featuredEvent.venue.split("\n").length - 1 && <br />}</span>)}</dd></div>
+            <div><dt>Venue</dt><dd>{featuredEvent.venue.map((line, index) => <span key={line}>{line}{index < featuredEvent.venue.length - 1 && <br />}</span>)}</dd></div>
             <div><dt>Time</dt><dd>{featuredEvent.time}</dd></div>
           </dl>
         </motion.article>
