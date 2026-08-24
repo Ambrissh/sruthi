@@ -24,7 +24,7 @@ function formatTime(seconds: number) {
 
 function BrandMark() {
   return (
-    <a href="#" className="group block" aria-label="Sruthi Swara Laya home">
+    <a href="/" className="group block" aria-label="Sruthi Swara Laya home">
       <img src="/brand/sruthi-swara-laya-logo.png" alt="Sruthi Swara Laya" className="h-12 w-28 object-contain object-left transition-transform duration-500 group-hover:-translate-y-0.5 sm:h-14 sm:w-36" />
     </a>
   );

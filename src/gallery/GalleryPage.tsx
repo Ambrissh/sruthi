@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 const videos = [
@@ -52,11 +53,21 @@ function VideoCard({ video, index }: { video: typeof videos[number]; index: numb
 }
 
 export function GalleryPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <main className="gallery-page">
       <header className="gallery-header">
         <a href="/" aria-label="Sruthi Swara Laya home"><img src="/brand/sruthi-swara-laya-logo.png" alt="Sruthi Swara Laya" /></a>
         <nav aria-label="Main navigation">{nav.map((item) => <a key={item.label} href={item.href} className={item.label === "Videos / Gallery" ? "is-active" : ""}>{item.label}</a>)}</nav>
+        <button className="gallery-menu-button" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle navigation" aria-expanded={menuOpen}>
+          <span className={menuOpen ? "is-open" : ""} />
+          <span className={menuOpen ? "is-open" : ""} />
+        </button>
+        <AnimatePresence>
+          {menuOpen && <motion.nav className="gallery-mobile-menu" aria-label="Mobile navigation" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: .2 }}>
+            {nav.map((item) => <a key={item.label} href={item.href} className={item.label === "Videos / Gallery" ? "is-active" : ""} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
+          </motion.nav>}
+        </AnimatePresence>
       </header>
 
       <section className="gallery-hero">

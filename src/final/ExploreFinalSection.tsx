@@ -5,7 +5,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const links = [
   { label: "Upcoming events", detail: "Discover our forthcoming concerts, festivals, and community performances.", href: "/events" },
-  { label: "Admissions & classes", detail: "Inquire about structured Carnatic music training and current enrollment.", href: "#classes" },
+  { label: "Admissions & classes", detail: "Inquire about structured Carnatic music training and current enrollment.", href: "/admissions" },
   { label: "Photo, audio & video gallery", detail: "Explore performances, recordings, and moments from our school.", href: "/videos-gallery" },
   { label: "Contact us", detail: "Begin a conversation with Shruthi Swara Laya.", href: "/contact" },
 ];

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 const links = [
   { label: "Home", href: "/" },
@@ -12,6 +13,7 @@ const directionsUrl = "https://maps.google.com/?q=2355+Carpenter+Court,+Fremont,
 const mapEmbedUrl = "https://www.google.com/maps?q=2355+Carpenter+Court,+Fremont,+CA+94539&output=embed";
 
 export function ContactPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <main className="contact-page">
       <header className="contact-header">
@@ -19,6 +21,15 @@ export function ContactPage() {
         <nav aria-label="Main navigation">
           {links.map((link) => <a key={link.label} href={link.href} className={link.label === "Contact Us" ? "is-active" : ""}>{link.label}</a>)}
         </nav>
+        <button className="contact-menu-button" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle navigation" aria-expanded={menuOpen}>
+          <span className={menuOpen ? "is-open" : ""} />
+          <span className={menuOpen ? "is-open" : ""} />
+        </button>
+        <AnimatePresence>
+          {menuOpen && <motion.nav className="contact-mobile-menu" aria-label="Mobile navigation" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: .2 }}>
+            {links.map((link) => <a key={link.label} href={link.href} className={link.label === "Contact Us" ? "is-active" : ""} onClick={() => setMenuOpen(false)}>{link.label}</a>)}
+          </motion.nav>}
+        </AnimatePresence>
       </header>
 
       <section className="contact-hero">

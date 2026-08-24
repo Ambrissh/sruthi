@@ -56,6 +56,10 @@
 .persistent-music-toggle span.is-active i:nth-child(3) { animation-delay: -.2s; }
 @keyframes music-meter { to { height: 14px; } }
 
+@media (max-width: 900px) {
+  .persistent-music-toggle { top: auto; right: 16px; bottom: 16px; }
+}
+
 .events-page-links, .gallery-header nav, .contact-header nav, .admissions-header-inner > nav { margin-right: 128px; }
 
 @layer components {
@@ -308,12 +312,17 @@
 
 /* Audio, video and photo gallery */
 .gallery-page { min-height: 100svh; color: #1b1b17; }
-.gallery-header { display: flex; width: min(1400px, calc(100% - 48px)); height: 100px; margin: 0 auto; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(27,27,23,.14); }
+.gallery-header { position: relative; z-index: 30; display: flex; width: min(1400px, calc(100% - 48px)); height: 100px; margin: 0 auto; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(27,27,23,.14); }
 .gallery-header > a img { display: block; width: 145px; height: 60px; object-fit: contain; object-position: left center; }
 .gallery-header nav { display: flex; align-items: center; gap: 28px; }
 .gallery-header nav a { position: relative; padding: 14px 0; color: rgba(27,27,23,.62); font-size: 10px; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }
 .gallery-header nav a.is-active { color: #1b1b17; }
 .gallery-header nav a.is-active::after { content: ""; position: absolute; right: 0; bottom: 6px; left: 0; height: 1px; background: currentColor; }
+.gallery-menu-button, .contact-menu-button { display: none; width: 42px; height: 42px; padding: 0; place-content: center; gap: 6px; border: 1px solid rgba(27,27,23,.18); background: rgba(255,253,250,.55); }
+.gallery-menu-button span, .contact-menu-button span { display: block; width: 20px; height: 1px; background: #1b1b17; transition: transform .25s ease; }
+.gallery-menu-button span:first-child.is-open, .contact-menu-button span:first-child.is-open { transform: translateY(3.5px) rotate(45deg); }
+.gallery-menu-button span:last-child.is-open, .contact-menu-button span:last-child.is-open { transform: translateY(-3.5px) rotate(-45deg); }
+.gallery-mobile-menu, .contact-mobile-menu { display: none; overflow: hidden; }
 .gallery-hero { position: relative; width: min(1400px, calc(100% - 48px)); margin: 0 auto; padding: clamp(72px, 9vw, 135px) 0 clamp(70px, 8vw, 110px); }
 .gallery-hero p, .gallery-section-heading p, .photo-gallery-heading p { margin: 0 0 22px; color: #93681d; font-size: 9px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase; }
 .gallery-hero h1 { margin: 0; font-family: "Cormorant Garamond", serif; font-size: clamp(5rem, 10vw, 10rem); font-weight: 400; line-height: .71; letter-spacing: -.055em; }
@@ -351,7 +360,14 @@
 .photo-album-card small { display: block; margin-top: 13px; color: rgba(255,255,255,.68); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; }
 
 @media (max-width: 900px) {
+  .events-page, .admissions-page, .gallery-page, .contact-page,
+  .past-events-page, .related-detail-page, .resource-page { background-attachment: scroll; }
   .gallery-header nav { display: none; }
+  .gallery-menu-button, .contact-menu-button { display: grid; }
+  .gallery-header .gallery-mobile-menu, .contact-header .contact-mobile-menu { position: absolute; top: 100%; right: 0; left: 0; display: flex; flex-direction: column; padding: 7px 20px 14px; border-bottom: 1px solid rgba(27,27,23,.16); background: #fffaf0; box-shadow: 0 18px 32px rgba(72,48,15,.1); }
+  .gallery-mobile-menu a, .contact-mobile-menu a { padding: 15px 4px; border-bottom: 1px solid rgba(27,27,23,.1); color: rgba(27,27,23,.72); font-size: 10px; letter-spacing: .16em; text-align: center; text-decoration: none; text-transform: uppercase; }
+  .gallery-mobile-menu a:last-child, .contact-mobile-menu a:last-child { border-bottom: 0; }
+  .gallery-mobile-menu a.is-active, .contact-mobile-menu a.is-active { color: #8d641e; }
   .gallery-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .photo-gallery-grid { grid-template-columns: 1fr; }
   .photo-album-card { aspect-ratio: 16 / 10; }
@@ -369,7 +385,7 @@
 
 /* Contact */
 .contact-page { min-height: 100svh; color: #1b1b17; }
-.contact-header { display: flex; width: min(1400px, calc(100% - 48px)); height: 100px; margin: 0 auto; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(27,27,23,.14); }
+.contact-header { position: relative; z-index: 30; display: flex; width: min(1400px, calc(100% - 48px)); height: 100px; margin: 0 auto; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(27,27,23,.14); }
 .contact-header > a img { display: block; width: 145px; height: 60px; object-fit: contain; object-position: left center; }
 .contact-header nav { display: flex; align-items: center; gap: 28px; }
 .contact-header nav a { position: relative; padding: 14px 0; color: rgba(27,27,23,.62); font-size: 10px; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }
@@ -699,6 +715,9 @@
 }
 
 @media (max-width: 47.99rem) {
+  .collapsing-gallery-section-compact { height: auto; padding: 28px 16px; background: #fff; }
+  .collapsing-gallery-mobile-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .collapsing-gallery-mobile-grid .collapsing-gallery-tile { aspect-ratio: 1 / 1.22; border-radius: 10px; }
   .collapsing-gallery-grid {
     gap: 16px;
     width: calc(100vw - 32px);

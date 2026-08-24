@@ -5,7 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type GalleryImage = { src: string; alt: string };
 type Direction = { x: number; y: number };
@@ -80,14 +80,37 @@ function GalleryTile({
   );
 }
 
+function CompactGallery() {
+  return (
+    <section className="collapsing-gallery-section collapsing-gallery-section-compact" aria-label="Our memories">
+      <div className="collapsing-gallery-mobile-grid">
+        {imageData.map((image, index) => (
+          <figure className="collapsing-gallery-tile" key={image.src}>
+            <img src={image.src} alt={image.alt} loading={index < 4 ? "eager" : "lazy"} decoding="async" />
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function CollapsingGallerySection() {
   const sectionRef = useRef<HTMLElement>(null);
   const centerRef = useRef<HTMLElement>(null);
+  const [compact, setCompact] = useState(() => window.matchMedia("(max-width: 767px)").matches);
   const heroScale = useMotionValue(1);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const updateCompact = () => setCompact(media.matches);
+    updateCompact();
+    media.addEventListener("change", updateCompact);
+    return () => media.removeEventListener("change", updateCompact);
+  }, []);
+
   useEffect(() => {
     const measure = () => {
       const center = centerRef.current;
@@ -107,6 +130,8 @@ export function CollapsingGallerySection() {
       window.removeEventListener("resize", measure);
     };
   }, [heroScale]);
+
+  if (compact) return <CompactGallery />;
 
   return (
     <section ref={sectionRef} className="collapsing-gallery-section" aria-label="Our memories">
