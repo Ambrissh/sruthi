@@ -9,3 +9,4 @@ coverage/
 # Never add the supplied PHP/cPanel backup or server credentials to this repository.
 shruthswar/
 *.key
+.vercel
