@@ -19,6 +19,35 @@
   button, a { -webkit-tap-highlight-color: transparent; }
 }
 
+/* Faithful baseline migration: retains the legacy site's original presentation and content. */
+.legacy-site { min-width: 770px; min-height: 100vh; padding: 0 0 20px; background: #000; color: #000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; }
+.legacy-top { width: 770px; height: 182px; margin: 0 auto; }
+.legacy-top img { display: block; width: 770px; height: 182px; }
+.legacy-frame { display: flex; width: 770px; min-height: 490px; margin: 0 auto; align-items: stretch; background: #fff; }
+.legacy-menu { flex: 0 0 170px; min-height: 490px; background: #f9d378; }
+.legacy-menu a, .legacy-menu img { display: block; width: 170px; height: 28px; }
+.legacy-menu a:not(.is-selected):hover img { filter: brightness(1.06); }
+.legacy-panel { width: 600px; min-height: 490px; padding: 0 20px 0 25px; background: #fff; }
+.legacy-content { min-height: 420px; overflow: hidden; }
+.legacy-content > div:first-child { text-align: right; }
+.legacy-content img { max-width: 100%; height: auto; }
+.legacy-content .left { float: left; padding: 5px; margin: 0 15px 15px 0; border: 1px solid #96022d; }
+.legacy-content .right { float: right; padding: 5px; margin: 0 15px; border: 1px solid #96022d; }
+.legacy-content p, .legacy-content span, .legacy-content li { font: 11px Verdana, Arial, Helvetica, sans-serif; line-height: normal; }
+.legacy-content a, .legacy-footer a, .legacy-bottom a { color: #96022d; text-decoration: underline; }
+.legacy-content a:hover, .legacy-footer a:hover, .legacy-bottom a:hover { color: #e9a02e; }
+.legacy-content table { width: 100%; border-collapse: separate; border-spacing: 1px; }
+.legacy-content #upcoming_events th { padding: 5px; color: #fff; background: #96022d; font-weight: bold; text-align: left; }
+.legacy-content #upcoming_events td { padding: 5px; vertical-align: top; background: #f9d378; }
+.legacy-content .one td { background: #f9d378; }
+.legacy-footer { clear: both; padding-top: 20px; text-align: right; }
+.legacy-footer > img { display: block; width: 556px; height: 3px; margin-bottom: 16px; }
+.legacy-footer p { margin: 0 0 22px; font: 11px Verdana, Arial, Helvetica, sans-serif; }
+.legacy-loading { padding-top: 45px; font: 11px Verdana, Arial, Helvetica, sans-serif; }
+.legacy-bottom { display: grid; grid-template-columns: 11px 1fr 1fr 11px; width: 770px; height: 29px; margin: 0 auto; align-items: center; background: url("/legacy-assets/images/bot_bar.jpg") repeat-x; color: #000; font: 9px Verdana, Arial, Helvetica, sans-serif; }
+.legacy-bottom img { width: 11px; height: 29px; }
+.legacy-bottom span:last-of-type { text-align: right; padding-right: 3px; }
+
 .events-page, .admissions-page, .gallery-page, .contact-page,
 .past-events-page, .related-detail-page, .resource-page {
   background-color: #fbf1d5;
