@@ -16,6 +16,7 @@ body { background: #000; }
 .legacy-content img { max-width: 100%; height: auto; }
 .legacy-content .left { float: left; padding: 5px; margin: 0 15px 15px 0; border: 1px solid #96022d; }
 .legacy-content .right { float: right; padding: 5px; margin: 0 15px; border: 1px solid #96022d; }
+.legacy-content .redhead1 { display: block; clear: both; }
 .legacy-content p, .legacy-content span, .legacy-content li { font: 11px Verdana, Arial, Helvetica, sans-serif; line-height: normal; }
 .legacy-content a, .legacy-footer a, .legacy-bottom a { color: #96022d; text-decoration: underline; }
 .legacy-content a:hover, .legacy-footer a:hover, .legacy-bottom a:hover { color: #e9a02e; }

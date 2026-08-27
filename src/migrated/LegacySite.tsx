@@ -42,7 +42,7 @@ const navigation = [
   ["baku", "baku.php", "but_baku"],
   ["links", "links.php", "but_links"],
   ["admissions", "admission.php", "but_admissions"],
-  ["audio", "audio_video.php", "but_audio"],
+  ["audio", "audio.php", "but_audio"],
   ["gallery", "gallery.php", "but_photo"],
   ["contact", "contact.php", "but_contact"],
 ] as const;
